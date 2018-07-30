@@ -1,21 +1,40 @@
 const path = require('path');
 
-module.exports = {
+const babelLoader = {
+  test: /\.js$/,
+  use: {
+    loader: 'babel-loader',
+  },
+};
+
+const serverConfig = {
   mode: 'development',
-  entry: './src/browser',
+  target: 'node',
+  entry: {
+    server: './src/server',
+  },
   output: {
-    filename: 'main.js',
+    libraryTarget: 'commonjs',
+    filename: 'server.js',
     path: path.resolve(__dirname, 'dist'),
   },
   module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
-      },
-    ],
+    rules: [babelLoader],
   },
 };
+
+const clientConfig = {
+  mode: 'development',
+  entry: {
+    client: './src/client',
+  },
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+  module: {
+    rules: [babelLoader],
+  },
+};
+
+module.exports = [serverConfig, clientConfig];

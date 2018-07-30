@@ -1,9 +1,12 @@
+export default ({ body }) => `
 <!doctype html>
 <html>
   <head>
     <title>React Boilerplate</title>
   </head>
   <body>
-    <script src="./dist/main.js"></script>
+    <div id="root">${body}</div>
+    <script src="/bundle.js"></script>
   </body>
 </html>
+`;

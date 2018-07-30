@@ -1,17 +1,24 @@
-const path = require('path');
-const express = require('express');
-const chalk = require('chalk');
+import path from 'path';
+import chalk from 'chalk';
+import express from 'express';
+import React from 'react';
+import ReactDOMServer, { renderToString } from 'react-dom/server';
+import ReactApp from '../shared';
+import template from './template';
 
 const app = express();
 
-app.use('/dist/main.js', (req, res) => {
-  const absolutePath = path.resolve('./dist/main.js');
-  res.status(200).sendFile(absolutePath);
+app.get('/bundle.js', (req, res) => {
+  const bundle = path.resolve('dist/bundle.js');
+  res.status(200).sendFile(bundle);
 });
 
 app.use('/', (req, res) => {
-  const absolutePath = path.resolve('./index.html');
-  res.status(200).sendFile(absolutePath);
+  const app = ReactDOMServer.renderToString(<ReactApp />);
+  res.status(200).send(template({
+    title: 'React Boilerplate',
+    body: app,
+  }));
 });
 
 app.listen(3000);
