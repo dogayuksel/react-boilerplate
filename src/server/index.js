@@ -10,7 +10,7 @@ import template from './template';
 const app = express();
 
 app.get('/bundle.js', (req, res) => {
-  const bundlePath = path.resolve('dist/bundlePath.js');
+  const bundlePath = path.resolve('dist/bundle.js');
   res.status(200).sendFile(bundlePath);
 });
 
