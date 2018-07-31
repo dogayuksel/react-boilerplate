@@ -1,6 +1,7 @@
+// @flow
 import React, { Component } from 'react';
 
-class HomePage extends Component {
+class HomePage extends Component<{}> {
   componentDidMount() {
     console.log('alive on DOM!');
   }

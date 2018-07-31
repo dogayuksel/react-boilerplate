@@ -1,4 +1,5 @@
-export default ({ body }) => `
+// @flow
+export default ({ body }: { body: string }) => `
 <!doctype html>
 <html>
   <head>

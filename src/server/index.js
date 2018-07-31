@@ -1,3 +1,4 @@
+// @flow
 import path from 'path';
 import chalk from 'chalk';
 import express from 'express';
@@ -9,8 +10,8 @@ import template from './template';
 const app = express();
 
 app.get('/bundle.js', (req, res) => {
-  const bundle = path.resolve('dist/bundle.js');
-  res.status(200).sendFile(bundle);
+  const bundlePath = path.resolve('dist/bundlePath.js');
+  res.status(200).sendFile(bundlePath);
 });
 
 app.use('/', (req, res) => {
