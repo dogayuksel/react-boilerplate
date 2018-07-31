@@ -3,7 +3,7 @@ import path from 'path';
 import chalk from 'chalk';
 import express from 'express';
 import React from 'react';
-import ReactDOMServer, { renderToString } from 'react-dom/server';
+import ReactDOMServer from 'react-dom/server';
 import ReactApp from '../shared';
 import template from './template';
 
@@ -15,10 +15,10 @@ app.get('/bundle.js', (req, res) => {
 });
 
 app.use('/', (req, res) => {
-  const app = ReactDOMServer.renderToString(<ReactApp />);
+  const renderedApp = ReactDOMServer.renderToString(<ReactApp />);
   res.status(200).send(template({
     title: 'React Boilerplate',
-    body: app,
+    body: renderedApp,
   }));
 });
 
